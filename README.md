@@ -1,28 +1,21 @@
 # Python Hard Link Copy
 
 
-**Install**
+## Usage (windows)
 
-Download version from releases if you don't have Python installed.
-
-
-**Usage**
-
-Drag & Drop folder over hardlinkcopy.bat to make linked copy of folder.
+Drag & Drop folder over **hardlinkcopy.bat** to make copy of folder.
 
 
+### Benefits
+- Make instant copy that does not consume any space.
 
-**Benefits of linked copy**
-- Backup terabytes of data in instant backups that do not initially consume any disk space.
-- Files mostly behave just like regular files.
+### Cons 
+- It's rare, but possible for special software to change original and linked copy of file at once.
+- Shared file properties.
+- Filesize reports incorrectly.
 
-**Cons of linked copy**
-- Properties of files are shared. Read only checkbox in file properties will affect both files.
-- Windows reports full filesize even file does not consume space.
-- Linked copies are only possible among same partition.
-- While deleting file or saving over it does not affect shared data, it's still possible for special software to change all linked copies of file at once.
+### How to turn linked file back into normal file
+- Save changes to file
+- Make copy of file
+- Move file out of disk or partition
 
-**Things that turn linked copy back into normal file**
-- Moving file out of disk or partition
-- Making copy of file
-- Saving changes to file
