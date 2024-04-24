@@ -3,7 +3,7 @@
 
 ## Usage (windows)
 
-Drag & Drop folder over **hardlinkcopy.bat** to make copy of folder.
+Drag & Drop folders or files over **hardlinkcopy.bat** to make a copy.
 
 
 ### Benefits
