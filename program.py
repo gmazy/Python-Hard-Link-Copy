@@ -22,29 +22,36 @@ def to_new_path(path, path_in, path_out):
         raise ValueError('Path failed to be updated')
     return new_path
 
-def hlink_file(file_path, path_out):
-    filename, extension = os.path.splitext(file_path)
-    new_file_name = filename + "-Copy-" + str(date.today()) + extension
-    try:
-        os.link(file_path, new_file_name)  # Create hard link with new name
-        print("Individual file dropped, date being inserted into file name...")
-        # Output filename with date: Copy-2024-04-24
-        print("File copied:", new_file_name)
-        return True
-    except OSError as error:
-        # Do normal copy if file's hardlink limit exceeded
-        if str(error).startswith("[WinError 1142]"):
-            copyfile(file_path, new_file_name)
-            print("File copied:", new_file_name)
-            return True
-        else:
-            input(str(error) + "\nFailed to copy file, Press any key to continue")
-            return False
+
 
 
 def hardlinkcopy(paths):
     filecount = 0
     failedfilelist = ''
+
+    def hlink_file(file_path, path_out):
+        filename, extension = os.path.splitext(file_path)
+        new_file_name = filename + "-Copy-" + str(date.today()) + extension
+        try:
+            os.link(file_path, new_file_name)  # Create hard link with new name
+            print("Individual file dropped, date being inserted into file name...")
+            # Output filename with date: Copy-2024-04-24
+            print("File copied:", new_file_name)
+            return True
+        except OSError as error:
+            # Do normal copy if file's hardlink limit exceeded
+            if str(error).startswith("[WinError 1142]"):
+                failedfilelist += str(file) + ", " #hmm idk
+                copyfile(file_path, new_file_name)
+                print("File copied:", new_file_name)
+                return True
+            else:
+                input(str(error) + "\nFailed to copy file, Press any key to continue")
+                return False
+
+
+
+
     starttime = time.time()
 
     for path_in in paths:
